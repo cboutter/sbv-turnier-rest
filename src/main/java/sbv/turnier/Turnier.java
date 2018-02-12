@@ -1,5 +1,9 @@
 package sbv.turnier;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.time.LocalDate;
 
 public class Turnier {
@@ -7,6 +11,8 @@ public class Turnier {
     private long id;
     private String name;
     private LocalDate startDate;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate endDate;
     private LocalDate registerEndDate;
 
