@@ -18,9 +18,14 @@ public class TurnierDao {
 
     public TurnierDao() {
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test1"));
-        turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test2").setEndDate(LocalDate.of(2018, 02, 12)));
-        turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test3").setEndDate(LocalDate.of(2018, 02, 13)));
-        turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test4").setEndDate(LocalDate.of(2018, 02, 14)));
+        turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test2")
+                .setEndDate(LocalDate.of(2018, 2, 12)));
+        turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test3")
+                .setStartDate(LocalDate.of(2018, 2, 13))
+                .setEndDate(LocalDate.of(2018, 2, 13))
+                .setRegisterEndDate(LocalDate.of(2018, 2, 12)));
+        turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test4")
+                .setEndDate(LocalDate.of(2018, 2, 14)));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test5"));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test6"));
     }
