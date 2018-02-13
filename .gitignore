@@ -3,3 +3,4 @@ target
 *.iml
 .mvn
 /src/main/resources/application.properties
+/src/main/resources/players_*.csv
