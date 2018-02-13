@@ -30,7 +30,7 @@ public class TurnierController {
 
     @RequestMapping(value = "/turnier", method = RequestMethod.POST)
     public Turnier turnier(@RequestBody Turnier toSave) {
-        logger.debug("POST turnier called");
+        logger.debug("POST turnier called for {}", toSave);
         return turnierDao.saveOrUpdate(toSave);
     }
 }

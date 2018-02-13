@@ -55,5 +55,14 @@ public class Turnier {
         return this;
     }
 
-
+    @Override
+    public String toString() {
+        return "Turnier{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", registerEndDate=" + registerEndDate +
+                '}';
+    }
 }

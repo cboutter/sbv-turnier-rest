@@ -1,5 +1,7 @@
 package sbv.turnier;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -12,6 +14,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class TurnierDao {
+
+    private static final Logger logger = LogManager.getLogger(TurnierDao.class);
 
     private final AtomicLong counter = new AtomicLong();
 
@@ -40,10 +44,12 @@ public class TurnierDao {
     }
 
     public Turnier saveOrUpdate(Turnier toSave) {
-        if (toSave.getId() == null) {
+        if (toSave.getId() == null || toSave.getId() < 0) {
             toSave.setId(counter.getAndIncrement());
+            logger.debug("setting id of turnier to {}", toSave.getId());
         }
         turnierDb.put(toSave.getId(), toSave);
+        logger.debug("Saved {}", toSave);
         return toSave;
     }
 }
