@@ -3,6 +3,7 @@ package sbv.turnier;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,13 +20,13 @@ public class TurnierDao {
     public TurnierDao() {
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test1"));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test2")
-                .setEndDate(LocalDate.of(2018, 2, 12)));
+                .setEndDate(LocalDate.parse("2018-02-12").atStartOfDay().toInstant(ZoneOffset.UTC)));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test3")
-                .setStartDate(LocalDate.of(2018, 2, 13))
-                .setEndDate(LocalDate.of(2018, 2, 13))
-                .setRegisterEndDate(LocalDate.of(2018, 2, 12)));
+                .setStartDate(LocalDate.parse("2018-02-13").atStartOfDay().toInstant(ZoneOffset.UTC))
+                .setEndDate(LocalDate.parse("2018-02-13").atStartOfDay().toInstant(ZoneOffset.UTC))
+                .setRegisterEndDate(LocalDate.parse("2018-02-12").atStartOfDay().toInstant(ZoneOffset.UTC)));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test4")
-                .setEndDate(LocalDate.of(2018, 2, 14)));
+                .setEndDate(LocalDate.parse("2018-02-14").atStartOfDay().toInstant(ZoneOffset.UTC)));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test5"));
         turnierDb.put(counter.get(), new Turnier().setId(counter.getAndIncrement()).setName("Test6"));
     }

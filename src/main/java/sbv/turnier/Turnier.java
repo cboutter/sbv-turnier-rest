@@ -1,14 +1,14 @@
 package sbv.turnier;
 
-import java.time.LocalDate;
+import java.time.Instant;
 
 public class Turnier {
 
     private Long id;
     private String name;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private LocalDate registerEndDate;
+    private Instant startDate;
+    private Instant endDate;
+    private Instant registerEndDate;
 
     public Long getId() {
         return id;
@@ -28,29 +28,29 @@ public class Turnier {
         return this;
     }
 
-    public LocalDate getStartDate() {
+    public Instant getStartDate() {
         return startDate;
     }
 
-    public Turnier setStartDate(LocalDate startDate) {
+    public Turnier setStartDate(Instant startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public LocalDate getEndDate() {
+    public Instant getEndDate() {
         return endDate;
     }
 
-    public Turnier setEndDate(LocalDate endDate) {
+    public Turnier setEndDate(Instant endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    public LocalDate getRegisterEndDate() {
+    public Instant getRegisterEndDate() {
         return registerEndDate;
     }
 
-    public Turnier setRegisterEndDate(LocalDate registerEndDate) {
+    public Turnier setRegisterEndDate(Instant registerEndDate) {
         this.registerEndDate = registerEndDate;
         return this;
     }
