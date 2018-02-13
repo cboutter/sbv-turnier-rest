@@ -37,4 +37,12 @@ public class TurnierDao {
     public Turnier findById(long id) {
         return turnierDb.get(id);
     }
+
+    public Turnier saveOrUpdate(Turnier toSave) {
+        if (toSave.getId() == null) {
+            toSave.setId(counter.getAndIncrement());
+        }
+        turnierDb.put(toSave.getId(), toSave);
+        return toSave;
+    }
 }
