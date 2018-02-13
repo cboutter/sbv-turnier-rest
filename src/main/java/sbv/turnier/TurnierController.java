@@ -3,10 +3,7 @@ package sbv.turnier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class TurnierController {
     @Autowired
     private TurnierDao turnierDao;
 
-    @RequestMapping("/turnier")
+    @RequestMapping(value = "/turnier", method = RequestMethod.GET)
     public List<Turnier> turnier() {
         logger.debug("GET turnier called");
         return turnierDao.findAll();
@@ -29,5 +26,11 @@ public class TurnierController {
     public Turnier turnierById(@PathVariable("id") long id) {
         logger.debug("GET turnier with id {} called", id);
         return turnierDao.findById(id);
+    }
+
+    @RequestMapping(value = "/turnier", method = RequestMethod.POST)
+    public Turnier turnier(@RequestParam(value = "to_save") Turnier toSave) {
+        logger.debug("POST turnier called");
+        return turnierDao.saveOrUpdate(toSave);
     }
 }
