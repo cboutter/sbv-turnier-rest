@@ -57,6 +57,7 @@ public class SpielerImporter {
                 imported.add(recordSpieler);
             }
 
+            //spielerRepository.deleteAll();
             //spielerRepository.save(imported);
 
         } catch (IOException e) {

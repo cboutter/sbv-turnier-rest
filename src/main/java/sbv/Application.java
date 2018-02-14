@@ -28,7 +28,7 @@ public class Application implements ApplicationRunner {
         logger.error("Oops! We have an Error. OK");
         logger.fatal("Damn! Fatal error. Please fix me.");
 
-        importer.importSpieler();
+        //importer.importSpieler();
     }
 
     /*@Bean
