@@ -1,10 +1,11 @@
 package sbv.turnier;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import sbv.meldung.Meldung;
+
+import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Turnier {
@@ -16,6 +17,9 @@ public class Turnier {
     private Instant startDate;
     private Instant endDate;
     private Instant registerEndDate;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "turnier")
+    public List<Meldung> meldungen;
 
     public Long getId() {
         return id;
@@ -60,6 +64,23 @@ public class Turnier {
     public Turnier setRegisterEndDate(Instant registerEndDate) {
         this.registerEndDate = registerEndDate;
         return this;
+    }
+
+    public List<Meldung> getMeldungen() {
+        return meldungen;
+    }
+
+    public Turnier setMeldungen(List<Meldung> meldungen) {
+        this.meldungen = meldungen;
+        return this;
+    }
+
+    public void addMeldung(Meldung meldung) {
+        if (meldungen == null) {
+            meldungen = new ArrayList<>();
+        }
+        meldungen.add(meldung);
+        meldung.setTurnier(this);
     }
 
     @Override
