@@ -8,7 +8,7 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "einzel")
 public class EinzelMeldung extends Meldung {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "einzel_spieler_id")
     public Spieler spieler;
 

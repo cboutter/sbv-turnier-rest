@@ -8,11 +8,11 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "doppel")
 public class DoppelMeldung extends Meldung {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doppel_spieler1_id")
     public Spieler spieler1;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doppel_spieler2_id")
     public Spieler spieler2;
 
