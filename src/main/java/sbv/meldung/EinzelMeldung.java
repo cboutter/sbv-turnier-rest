@@ -2,12 +2,10 @@ package sbv.meldung;
 
 import sbv.spieler.Spieler;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@DiscriminatorValue(value = "einzel")
 public class EinzelMeldung extends Meldung {
 
     @ManyToOne(fetch = FetchType.LAZY)
