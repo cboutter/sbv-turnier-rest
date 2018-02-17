@@ -2,6 +2,7 @@ package sbv.meldung;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import sbv.Disziplin;
+import sbv.spieler.Spieler;
 import sbv.turnier.Turnier;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import java.time.Instant;
 
 @Entity
 @DiscriminatorColumn(name = "MELDUNG_TYPE")
-public abstract class Meldung {
+@DiscriminatorValue(value = "einzel")
+public class Meldung {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +19,16 @@ public abstract class Meldung {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "turnier_id")
+    @JoinColumn(name = "turnier_id", nullable = false)
     private Turnier turnier;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Disziplin disziplin;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "spieler_id", nullable = false)
+    public Spieler spieler;
 
     private Integer endPlatzierung;
 
@@ -47,6 +53,15 @@ public abstract class Meldung {
 
     public Meldung setDisziplin(Disziplin disziplin) {
         this.disziplin = disziplin;
+        return this;
+    }
+
+    public Spieler getSpieler() {
+        return spieler;
+    }
+
+    public Meldung setSpieler(Spieler spieler) {
+        this.spieler = spieler;
         return this;
     }
 
@@ -93,5 +108,15 @@ public abstract class Meldung {
     public Meldung setEndPlatzierung(Integer endPlatzierung) {
         this.endPlatzierung = endPlatzierung;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Meldung{" +
+                "id=" + id +
+                ", turnier=" + turnier +
+                ", disziplin=" + disziplin +
+                ", spieler=" + spieler +
+                '}';
     }
 }

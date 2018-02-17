@@ -9,28 +9,15 @@ import javax.persistence.*;
 public class DoppelMeldung extends Meldung {
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "doppel_spieler1_id")
-    public Spieler spieler1;
+    @JoinColumn(name = "partner_id", nullable = false)
+    public Spieler partner;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "doppel_spieler2_id")
-    public Spieler spieler2;
-
-    public Spieler getSpieler1() {
-        return spieler1;
+    public Spieler getPartner() {
+        return partner;
     }
 
-    public DoppelMeldung setSpieler1(Spieler spieler) {
-        this.spieler1 = spieler;
-        return this;
-    }
-
-    public Spieler getSpieler2() {
-        return spieler2;
-    }
-
-    public DoppelMeldung setSpieler2(Spieler spieler2) {
-        this.spieler2 = spieler2;
+    public DoppelMeldung setPartner(Spieler partner) {
+        this.partner = partner;
         return this;
     }
 
@@ -39,8 +26,8 @@ public class DoppelMeldung extends Meldung {
         return "DoppelMeldung{" +
                 "diszipling=" + getDisziplin() +
                 "turnier=" + getTurnier().getName() +
-                "spieler1=" + spieler1.getVorname() + " " + spieler1.getName() +
-                "spieler2=" + spieler2.getVorname() + " " + spieler2.getName() +
+                "spieler=" + getSpieler().getVorname() + " " + getSpieler().getName() +
+                "partner=" + partner.getVorname() + " " + partner.getName() +
                 '}';
     }
 }
