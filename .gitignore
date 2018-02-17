@@ -3,5 +3,5 @@ target
 *.iml
 .mvn
 /src/main/resources/application.properties
-/src/main/resources/players_*.csv
-/src/main/resources/meldungen_import.sql
+/src/main/resources/*.csv
+/src/main/resources/meldungen_import*.sql
