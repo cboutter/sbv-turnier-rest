@@ -63,16 +63,19 @@ public class RanglistenController {
     }
 
     private class RLComparator implements Comparator<RanglistenEintragDTO> {
+
+        private Comparator<Integer> nullSafeIntegerComparator = Comparator.nullsFirst(Integer::compareTo);
+
         @Override
         public int compare(RanglistenEintragDTO o1, RanglistenEintragDTO o2) {
             final int result;
-            int gesamtComp = o1.getPunkteGesamt().compareTo(o2.getPunkteGesamt());
+            int gesamtComp = nullSafeIntegerComparator.compare(o1.getPunkteGesamt(), o2.getPunkteGesamt());
             if (gesamtComp == 0) {
-                int punkte3Comp = o1.getPunkte3().compareTo(o2.getPunkte3());
+                int punkte3Comp = nullSafeIntegerComparator.compare(o1.getPunkte3(), o2.getPunkte3());
                 if (punkte3Comp == 0) {
-                    int punkte2Comp = o1.getPunkte2().compareTo(o2.getPunkte2());
+                    int punkte2Comp = nullSafeIntegerComparator.compare(o1.getPunkte2(), o2.getPunkte2());
                     if (punkte2Comp == 0) {
-                        result = o1.getPunkte1().compareTo(o2.getPunkte1());
+                        result = nullSafeIntegerComparator.compare(o1.getPunkte1(), o2.getPunkte1());
                     } else {
                         result = punkte2Comp;
                     }
@@ -86,4 +89,6 @@ public class RanglistenController {
             return result;
         }
     }
+
+
 }

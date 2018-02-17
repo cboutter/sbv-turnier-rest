@@ -73,8 +73,8 @@ public class RanglistenEintragDTO {
 
     private void calculatePunkteGesamt() {
         punkteGesamt = punkte1;
-        punkteGesamt = punkteGesamt == null ? punkte2 : (punkte2 == null ? punkteGesamt : punkteGesamt + punkte2);
-        punkteGesamt = punkteGesamt == null ? punkte3 : (punkte3 == null ? punkteGesamt : punkteGesamt + punkte3);
+        punkteGesamt = punkteGesamt == null ? punkte2 : (punkte2 == null ? punkteGesamt : new Integer(punkteGesamt.intValue() + punkte2)); //punkteGesamt + punkte2);
+        punkteGesamt = punkteGesamt == null ? punkte3 : (punkte3 == null ? punkteGesamt : new Integer(punkteGesamt.intValue() + punkte3));
     }
 
     public Integer getPunkte1() {
