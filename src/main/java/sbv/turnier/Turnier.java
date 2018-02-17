@@ -20,6 +20,7 @@ public class Turnier {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "turnier")
     public List<Meldung> meldungen;
+    private boolean sm = false;
 
     public Long getId() {
         return id;
@@ -92,5 +93,17 @@ public class Turnier {
                 ", endDate=" + endDate +
                 ", registerEndDate=" + registerEndDate +
                 '}';
+    }
+
+    public boolean isSM() {
+        return sm;
+    }
+
+    public boolean isSm() {
+        return sm;
+    }
+
+    public void setSm(boolean sm) {
+        this.sm = sm;
     }
 }

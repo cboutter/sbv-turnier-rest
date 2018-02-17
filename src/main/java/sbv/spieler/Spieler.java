@@ -97,6 +97,31 @@ public class Spieler {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Spieler spieler = (Spieler) o;
+
+        if (id != spieler.id) return false;
+        if (!spielerid.equals(spieler.spielerid)) return false;
+        if (!name.equals(spieler.name)) return false;
+        if (vorname != null ? !vorname.equals(spieler.vorname) : spieler.vorname != null) return false;
+        if (gebdatum != null ? !gebdatum.equals(spieler.gebdatum) : spieler.gebdatum != null) return false;
+        if (sex != spieler.sex) return false;
+        if (nat != null ? !nat.equals(spieler.nat) : spieler.nat != null) return false;
+        if (clubid != null ? !clubid.equals(spieler.clubid) : spieler.clubid != null) return false;
+        return clubname != null ? clubname.equals(spieler.clubname) : spieler.clubname == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + spielerid.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Spieler{" +
                 "spielerid='" + spielerid + '\'' +
