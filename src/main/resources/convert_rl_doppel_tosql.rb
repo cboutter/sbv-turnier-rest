@@ -37,8 +37,8 @@ CSV.foreach("Rangliste_VL_#{disz}.csv", quote_char: '"', col_sep: ',', row_sep: 
       partner_name = partner_row['Nachname']
       partner_vorname = partner_row['Vorname']
 
-      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s1.id as s_id, s2.id as partner_id, 2, '#{disz}', 'doppel', #{platz_rlt} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
-      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s2.id as s_id, s1.id as partner_id, 2, '#{disz}', 'doppel', #{platz_rlt} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
+      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s1.id as s_id, s2.id as partner_id, 3, '#{disz}', 'doppel', #{platz_rlt} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
+      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s2.id as s_id, s1.id as partner_id, 3, '#{disz}', 'doppel', #{platz_rlt} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
 
       open_partners_rlt17.delete(platz_rlt)
     else
@@ -52,8 +52,8 @@ CSV.foreach("Rangliste_VL_#{disz}.csv", quote_char: '"', col_sep: ',', row_sep: 
       partner_name = partner_row['Nachname']
       partner_vorname = partner_row['Vorname']
 
-      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s1.id as s_id, s2.id as partner_id, 2, '#{disz}', 'doppel', #{platz_sm17} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
-      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s2.id as s_id, s1.id as partner_id, 2, '#{disz}', 'doppel', #{platz_sm17} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
+      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s1.id as s_id, s2.id as partner_id, 4, '#{disz}', 'doppel', #{platz_sm17} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
+      target.write("insert into meldung (spieler_id, partner_id, turnier_id, disziplin, meldung_type, end_platzierung) select s2.id as s_id, s1.id as partner_id, 4, '#{disz}', 'doppel', #{platz_sm17} from spieler s1, spieler s2 where s1.name = '#{name}' and s1.vorname = '#{vorname}' and s2.name = '#{partner_name}' and s2.vorname = '#{partner_vorname}';\n")
 
       open_partners_sm17.delete(platz_sm17)
     else
