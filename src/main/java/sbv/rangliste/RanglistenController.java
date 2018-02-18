@@ -24,7 +24,7 @@ public class RanglistenController {
     @Autowired
     private MeldungRepository meldungRepository;
 
-    private final RLComparator comparator = new RLComparator();
+    private final RLComparator comparator = new RLComparator(RLComparator.SortOrder.DESCENDING);
 
     @RequestMapping("/rangliste/{disz}")
     public List<RanglistenEintragDTO> ranglisteByDisziplin(@PathVariable("disz") Disziplin disziplin) {
@@ -62,7 +62,15 @@ public class RanglistenController {
         return 3 - turniers.indexOf(turnier);
     }
 
-    private class RLComparator implements Comparator<RanglistenEintragDTO> {
+    private static class RLComparator implements Comparator<RanglistenEintragDTO> {
+
+        public enum SortOrder {ASCENDING, DESCENDING}
+
+        private SortOrder sortOrder;
+
+        public RLComparator(SortOrder sortOrder) {
+            this.sortOrder = sortOrder;
+        }
 
         private Comparator<Integer> nullSafeIntegerComparator = Comparator.nullsFirst(Integer::compareTo);
 
@@ -86,7 +94,7 @@ public class RanglistenController {
                 result = gesamtComp;
             }
 
-            return result;
+            return (sortOrder == SortOrder.DESCENDING) ? result * (-1) : result;
         }
     }
 
