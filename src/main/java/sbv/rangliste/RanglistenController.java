@@ -1,6 +1,10 @@
 package sbv.rangliste;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +18,26 @@ import sbv.turnier.TurnierRepository;
 
 import java.util.*;
 
+@PropertySource("classpath:punkte_rl.properties")
+@PropertySource("classpath:punkte_sm.properties")
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class RanglistenController {
+
+    private static final Logger logger = LogManager.getLogger(RanglistenController.class);
 
     @Autowired
     private TurnierRepository turnierRepository;
 
     @Autowired
     private MeldungRepository meldungRepository;
+
+    @Autowired
+    private Environment env;
+
+    private Properties punkteSM;
+
+    private Properties punkteRL;
 
     private final RLComparator comparator = new RLComparator(RLComparator.SortOrder.DESCENDING);
 
@@ -54,8 +69,9 @@ public class RanglistenController {
     }
 
     private int getPunkteForPlatzierung(Integer platzierung, boolean sm) {
-        // TODO muss noch ausimplementiert werden. Sehen wie die Punkte hinterlegt werden. Resources?
-        return 0;
+        int result = Integer.parseInt(env.getProperty((sm ? "sm." : "rl.") + platzierung.toString(), "0"));
+
+        return result;
     }
 
     private int getTurnierNr(Turnier turnier, List<Turnier> turniers) {
