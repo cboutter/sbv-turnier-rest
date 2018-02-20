@@ -72,9 +72,35 @@ public class RanglistenEintragDTO {
     }
 
     private void calculatePunkteGesamt() {
-        punkteGesamt = punkte1;
-        punkteGesamt = punkteGesamt == null ? punkte2 : (punkte2 == null ? punkteGesamt : new Integer(punkteGesamt.intValue() + punkte2)); //punkteGesamt + punkte2);
-        punkteGesamt = punkteGesamt == null ? punkte3 : (punkte3 == null ? punkteGesamt : new Integer(punkteGesamt.intValue() + punkte3));
+        int[] max2Wertungen = new int[2];
+        if (punkte1 != null) {
+            max2Wertungen[0] = punkte1;
+        }
+        if (punkte2 != null) {
+            putAndSortWertung(punkte2, max2Wertungen);
+        }
+        if (punkte3 != null) {
+            putAndSortWertung(punkte3, max2Wertungen);
+        }
+
+        if (max2Wertungen[1] > 0) {
+            punkteGesamt = max2Wertungen[0] + max2Wertungen[1];
+        } else if (max2Wertungen[0] > 0) {
+            punkteGesamt = max2Wertungen[0];
+        } else {
+            punkteGesamt = null;
+        }
+    }
+
+    private void putAndSortWertung(Integer wertung, int[] max2Wertungen) {
+        if (wertung != null) {
+            if (wertung > max2Wertungen[0]) {
+                max2Wertungen[1] = max2Wertungen[0];
+                max2Wertungen[0] = wertung;
+            } else if (wertung > max2Wertungen[1]) {
+                max2Wertungen[1] = wertung;
+            }
+        }
     }
 
     public Integer getPunkte1() {
