@@ -99,11 +99,7 @@ public class Turnier {
         return sm;
     }
 
-    public boolean isSm() {
-        return sm;
-    }
-
-    public void setSm(boolean sm) {
+    public void setSM(boolean sm) {
         this.sm = sm;
     }
 }
