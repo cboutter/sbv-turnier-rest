@@ -13,7 +13,7 @@ import sbv.turnier.TurnierRepository;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class MeldungController {
 
