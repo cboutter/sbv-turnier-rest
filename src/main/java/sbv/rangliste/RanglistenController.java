@@ -20,7 +20,7 @@ import java.util.*;
 
 @PropertySource("classpath:punkte_rl.properties")
 @PropertySource("classpath:punkte_sm.properties")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 public class RanglistenController {
 
